@@ -4,6 +4,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "OpenTiny Playground",
   description: "OpenTiny 项目演练场",
+  base: process.env.VITEPRESS_BASE || '/',
+  outDir: 'dist',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
