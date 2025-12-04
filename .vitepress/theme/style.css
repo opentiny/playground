@@ -1,9 +1,28 @@
 .opentiny-playground-layout{
     background: #f5f5f5;
 }
+.opentiny-playground-layout .is-home{
+    background: #f5f5f5;
+}
 .VPNav .container{
     max-width: 100%;
 }
 .VPHome .container{
     max-width: 100%;
+}
+
+/* ===== VitePress 导航覆盖 ===== */
+.VPNav .container {
+  width: unset;
+  padding: unset;
+}
+
+/* 隐藏默认导航栏，使用自定义导航栏 */
+.VPNav {
+  display: none !important;
+}
+
+/* ===== 主内容区域优化 ===== */
+.VPContent {
+  padding-top: 0 !important;
 }

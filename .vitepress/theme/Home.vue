@@ -32,8 +32,7 @@
           <div class="row4">
             <a
               :href="item.link"
-              :class="['link', { disabled: idx !== 0 }]"
-              target="_blank"
+              :class="['link', { disabled: item.link === '' }]"
               >进入 Playground</a
             >
           </div>
@@ -44,13 +43,13 @@
 </template>
 <script setup>
 
-const  homeList = [
+const homeList = [
       {
         icon: '/images/logo-tiny-vue.svg',
         title: 'TinyVue',
         titleTip: 'vue组件库',
         imgUrl: '/images/stepImg3.webp',
-        link: 'https://opentiny.design/vue-playground',
+        link: '/vue-playground',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
@@ -58,7 +57,7 @@ const  homeList = [
         title: 'TinyEngine',
         titleTip: '低代码引擎',
         imgUrl: '/images/stepImg3.webp',
-        link: 'https://opentiny.design/vue-playground',
+        link: '/tiny-engine#/tiny-engine-editor',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
@@ -66,7 +65,7 @@ const  homeList = [
         title: 'NEXT-SDKs',
         titleTip: '智能应用开发工具包', 
         imgUrl: '/images/stepImg3.webp',
-        link: 'https://opentiny.design/vue-playground',
+        link: '',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
@@ -74,7 +73,7 @@ const  homeList = [
         title: 'TinyRobot',
         titleTip: 'AI智能助手', 
         imgUrl: '/images/stepImg3.webp',
-        link: 'https://opentiny.design/vue-playground',
+        link: '',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
     ]
