@@ -4,12 +4,11 @@
     <CustomHeader v-if="!showNavigation"  />
 
     <!-- 主内容区域 -->
-    <div class="main-content"  v-if="!showNavigation" >
+    <div class="main-content">
       <DefaultLayout>
         默认布局
       </DefaultLayout>
     </div>
-    <CustomContent v-if="showNavigation" />
   </div>
 </template>
 
@@ -17,7 +16,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import CustomHeader from './components/CustomHeader.vue'
-import CustomContent from './components/customContent.vue'
 import { computed, ref, onMounted, watch } from 'vue';
 import { useData, useRoute } from 'vitepress';
 import { normalizeLink, isActiveRoute, isHomePage } from "./utils/router";

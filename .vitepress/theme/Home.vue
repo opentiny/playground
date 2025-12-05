@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-page">
     <div class="home-title">欢迎来到 OpenTiny Playground 演练场</div>
     <div class="home-desc">
       代码演练场是一个在线或本地的交互式环境，能让开发者直接编写、运行和调试代码，无需复杂的本地环境配置
@@ -45,34 +45,34 @@
 
 const homeList = [
       {
-        icon: '/images/logo-tiny-vue.svg',
+        icon: '/images/v1.svg',
         title: 'TinyVue',
         titleTip: 'vue组件库',
-        imgUrl: '/images/stepImg3.webp',
-        link: '/vue-playground',
+        imgUrl: '/images/banner1.svg',
+        link: '/playground/vue-playground',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
-        icon: '/images/logo-tiny-engine.svg',
+        icon: '/images/e1.svg',
         title: 'TinyEngine',
         titleTip: '低代码引擎',
-        imgUrl: '/images/stepImg3.webp',
-        link: '/tiny-engine#/tiny-engine-editor',
+        imgUrl: '/images/banner2.svg',
+        link: '/playground/tiny-engine#/tiny-engine-editor',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
-        icon: '/images/logo-next-sdk.svg',
+        icon: '/images/n1.svg',
         title: 'NEXT-SDKs',
         titleTip: '智能应用开发工具包', 
-        imgUrl: '/images/stepImg3.webp',
+        imgUrl: '/images/banner3.svg',
         link: '',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
-        icon: '/images/logo-tiny-robot.svg',
+        icon: '/images/r1.svg',
         title: 'TinyRobot',
         titleTip: 'AI智能助手', 
-        imgUrl: '/images/stepImg3.webp',
+        imgUrl: '/images/banner4.svg',
         link: '',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },

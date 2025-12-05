@@ -3,7 +3,7 @@
     <div class="sidebar">
       <div class="home-logo">
         <a href="/" rel="noopener noreferrer">
-          <img src="/images/logo-tiny-vue.svg" class="home-logo-icon" />
+          <img src="/images/mini-logo.svg" class="home-logo-icon" />
         </a>
       </div>
       <div
@@ -15,13 +15,15 @@
         style="position: relative"
       >
         <a :href="iconList.link" rel="noopener noreferrer">
-          <img :src="iconList.src" class="icon" />
+          <img :src="iconList.isActive ? iconList.srcActive : iconList.src" class="icon" />
         </a>
         <div v-if="tipIdx === idx" class="icon-tip">
           <div class="icon-title">{{ iconList.title }}</div>
           <div class="icon-content">{{ iconList.titleTip }}</div>
         </div>
       </div>
+    </div>
+    <div class="sidebar-mb">
     </div>
     <div class="main-content">
       <label class="iframe-loader">
@@ -50,25 +52,32 @@ import { useRoute } from "vitepress";
 const route = useRoute();
 const iconLists = [
   {
-    src: "/images/logo-tiny-vue.svg",
+    src: "/images/n1.svg",
+    srcActive: "/images/n2.svg",
+    isActive: true,
     title: "TinyVue",
     titleTip: "vue组件库",
-    link: "/vue-playground",
+    link: "/playground/vue-playground",
   },
   {
-    src: "/images/logo-tiny-engine.svg",
-    title: "TinyEngine",
+    src: "/images/e1.svg",
+    srcActive: "/images/e2.svg",
+    isActive: false,
     titleTip: "低代码引擎",
-    link: "/tiny-engine#/tiny-engine-editor",
+    link: "/playground/tiny-engine#/tiny-engine-editor",
   },
   {
-    src: "/images/logo-next-sdk.svg",
+    src: "/images/n1.svg",
+    srcActive: "/images/n2.svg",
+    isActive: false,
     title: "NEXT-SDKs",
     link: "",
     titleTip: "智能应用开发工具包",
   },
   {
-    src: "/images/logo-tiny-robot.svg",
+    src: "/images/r1.svg",
+    srcActive: "/images/r2.svg",
+    isActive: false,
     title: "TinyRobot",
     link: "",
     titleTip: "AI智能助手",
@@ -87,6 +96,7 @@ const hideTip = () => {
 watch(
   () => route.path,
   () => {
+    
     if (route.path.includes("/vue-playground")) {
       linkUrl.value = "https://opentiny.design/vue-playground";
     } else if (route.path.includes("/tiny-engine")) {
@@ -130,6 +140,9 @@ watch(
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.sidebar-mb{
+  display: none;
 }
 .icon-wrapper {
   width: 44px;
@@ -230,5 +243,17 @@ watch(
 .main-content iframe {
   border-width: 0;
   border-left: 1px solid #e8e8e8;
+}
+
+@media (max-width: 680px) {
+  .sidebar{
+    display: none;
+  }
+  .sidebar-mb{
+    display: block; 
+  }
+  .main-content iframe .header{
+    margin-left: 30px;
+  }
 }
 </style>

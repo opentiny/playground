@@ -23,6 +23,13 @@
 }
 
 /* ===== 主内容区域优化 ===== */
-.VPContent {
-  padding-top: 0 !important;
+.VPSidebar {
+  display: none !important;
 }
+.Layout .VPContent.has-sidebar {
+  padding: 0 !important;
+}
+.VPContent{
+  padding: 0 !important;
+}
+
