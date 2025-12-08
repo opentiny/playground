@@ -1,0 +1,39 @@
+.opentiny-playground-layout {
+  background-image: url('./images/bg-playground-home');
+}
+
+.opentiny-playground-layout .is-home {
+  background-image: url('./images/bg-playground-home');
+}
+
+.VPNav .container {
+  max-width: 100%;
+}
+
+.VPHome .container {
+  max-width: 100%;
+}
+
+/* ===== VitePress 导航覆盖 ===== */
+.VPNav .container {
+  width: unset;
+  padding: unset;
+}
+
+/* 隐藏默认导航栏，使用自定义导航栏 */
+.VPNav {
+  display: none !important;
+}
+
+/* ===== 主内容区域优化 ===== */
+.VPSidebar {
+  display: none !important;
+}
+
+.Layout .VPContent.has-sidebar {
+  padding: 0 !important;
+}
+
+.VPContent {
+  padding: 0 !important;
+}
