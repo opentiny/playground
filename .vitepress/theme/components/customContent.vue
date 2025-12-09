@@ -3,7 +3,10 @@
     <div class="sidebar">
       <div class="home-logo">
         <a href="/" rel="noopener noreferrer">
-          <img src="/images/mini-logo.svg" class="home-logo-icon" />
+          <img
+            :src="isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg'"
+            class="home-logo-icon"
+          />
         </a>
       </div>
       <div
@@ -28,7 +31,10 @@
       </div>
     </div>
     <div class="sidebar-mb" @click="showModal = true">
-      <img src="./images/menu.svg" class="menu-mb" />
+      <img
+        :src="isDark ? 'images/menu.svg' : 'images/menu.svg'"
+        class="menu-mb"
+      />
     </div>
     <div class="main-content">
       <label class="iframe-loader">
@@ -238,7 +244,7 @@ watch(
 .custom-content {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 .home-logo {
   height: 60px;
