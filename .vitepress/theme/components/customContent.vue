@@ -12,6 +12,7 @@
         class="icon-wrapper"
         @mouseenter="showTip(idx)"
         @mouseleave="hideTip"
+        @click="changeIcon(idx)"
         style="position: relative"
       >
         <a :href="iconList.link" rel="noopener noreferrer">
@@ -27,7 +28,7 @@
       </div>
     </div>
     <div class="sidebar-mb" @click="showModal = true">
-      <img src="/images/menu.svg" class="menu-mb" />
+      <img src="./images/menu.svg" class="menu-mb" />
     </div>
     <div class="main-content">
       <label class="iframe-loader">
@@ -54,7 +55,7 @@
         <div class="home-logo-mb">
           <a href="/" class="logo-link">
             <img
-              :src="isDark ? '/images/logo2.svg' : '/images/logo2.svg'"
+              :src="isDark ? 'images/logo2.svg' : 'images/logo2.svg'"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -124,7 +125,7 @@
             class="home-link home-link-mb"
           >
             <img
-              :src="'/images/logo.svg'"
+              :src="'images/logo.svg'"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -150,46 +151,46 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { reactive, ref, watch } from "vue";
 import { useRoute } from "vitepress";
 const route = useRoute();
 
 const showModal = ref(false);
 
-const iconLists = [
+const iconLists = reactive([
   {
-    src: "/images/tiny-vue-logo.svg",
-    srcActive: "/images/tiny-vue-logo-active.svg",
+    src: "images/tiny-vue-logo.svg",
+    srcActive: "images/tiny-vue-logo-active.svg",
     isActive: true,
     title: "TinyVue",
     titleTip: "vue组件库",
-    link: "/playground/vue-playground",
+    link: "vue-playground",
   },
   {
-    src: "/images/tiny-engine-logo.svg",
-    srcActive: "/images/tiny-engine-logo-active.svg",
+    src: "images/tiny-engine-logo.svg",
+    srcActive: "images/tiny-engine-logo-active.svg",
     isActive: false,
     title: "TinyEngine",
     titleTip: "低代码引擎",
-    link: "/playground/tiny-engine#/tiny-engine-editor",
+    link: "tiny-engine#/tiny-engine-editor",
   },
   {
-    src: "/images/next-sdk-logo.svg",
-    srcActive: "/images/next-sdk-logo-active.svg",
+    src: "images/next-sdk-logo.svg",
+    srcActive: "images/next-sdk-logo-active.svg",
     isActive: false,
     title: "NEXT-SDKs",
     link: "",
     titleTip: "智能应用工具包",
   },
   {
-    src: "/images/tiny-robot-logo.svg",
-    srcActive: "/images/tiny-robot-logo-active.svg",
+    src: "images/tiny-robot-logo.svg",
+    srcActive: "images/tiny-robot-logo-active.svg",
     isActive: false,
     title: "TinyRobot",
     link: "",
     titleTip: "AI智能助手",
   },
-];
+]);
 
 const tipIdx = ref(null);
 const linkUrl = ref("https://opentiny.design/vue-playground");
@@ -198,6 +199,11 @@ function showTip(idx) {
 }
 const hideTip = () => {
   tipIdx.value = null;
+};
+const changeIcon = (idx) => {
+  iconLists.forEach((icon, index) => {
+    icon.isActive = index === idx;
+  });
 };
 
 interface TabItem {
@@ -327,7 +333,6 @@ watch(
 .main-content {
   flex: 1;
   min-width: 0;
-  height: 100vh;
 }
 .iframe-loader {
   display: block;
