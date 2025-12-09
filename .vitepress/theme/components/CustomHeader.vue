@@ -242,7 +242,7 @@ watch(
   top: 0;
   z-index: 50;
   width: 100%;
-  background-image: url('./images/bg-playground-home');
+  background-image: url('./images/bg-playground-home.png');
   background-size: cover;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);

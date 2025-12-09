@@ -1,9 +1,10 @@
 .opentiny-playground-layout {
-  background-image: url('./images/bg-playground-home');
+  background-image: url('./images/bg-playground-home.png');
+  background-color: #f5f5f5;
 }
 
 .opentiny-playground-layout .is-home {
-  background-image: url('./images/bg-playground-home');
+  height: 800px;
 }
 
 .VPNav .container {
@@ -12,6 +13,14 @@
 
 .VPHome .container {
   max-width: 100%;
+}
+
+.VPHome {
+  margin-bottom: 0 !important;
+}
+
+.Layout {
+  min-height: calc(100vh - 64px) !important;
 }
 
 /* ===== VitePress 导航覆盖 ===== */
