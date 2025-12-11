@@ -2,7 +2,7 @@
   <div class="custom-content">
     <div class="sidebar">
       <div class="home-logo">
-        <a href="/" rel="noopener noreferrer">
+        <a :href="backHome" rel="noopener noreferrer">
           <img
             :src="isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg'"
             class="home-logo-icon"
@@ -158,10 +158,15 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
-import { useRoute } from "vitepress";
+import { useRoute ,useData } from "vitepress";
+// 获取 VitePress 数据
+const { site } = useData();
 const route = useRoute();
 
 const showModal = ref(false);
+
+const backHome = ref('/');
+backHome.value = site.value.base;
 
 const iconLists = reactive([
   {
@@ -199,7 +204,7 @@ const iconLists = reactive([
 ]);
 
 const tipIdx = ref(null);
-const linkUrl = ref("https://opentiny.design/vue-playground");
+const linkUrl = ref("https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os");
 function showTip(idx) {
   tipIdx.value = idx;
 }
@@ -209,6 +214,11 @@ const hideTip = () => {
 const changeIcon = (idx) => {
   iconLists.forEach((icon, index) => {
     icon.isActive = index === idx;
+  });
+};
+const changeIconActive = (key) => {
+  iconLists.forEach((icon, index) => {
+    icon.isActive = iconLists[index].title === key;
   });
 };
 
@@ -228,13 +238,17 @@ const getModalTabClasses = (tab: TabItem) => ({
 watch(
   () => route.path,
   () => {
+    let title = "TinyVue";
     if (route.path.includes("/vue-playground")) {
-      linkUrl.value = "https://opentiny.design/vue-playground";
+      linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
+      title = "TinyVue";
     } else if (route.path.includes("/tiny-engine")) {
       linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
+      title = "TinyEngine";
     } else {
-      linkUrl.value = "https://opentiny.design/vue-playground";
+      linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
     }
+    changeIconActive(title);
   },
   { deep: true, immediate: true }
 );
