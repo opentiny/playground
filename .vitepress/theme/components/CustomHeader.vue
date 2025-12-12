@@ -124,22 +124,6 @@
             </div>
 
             <div class="nav-buttons">
-              <button class="nav-button" @click="openSearch">
-                <svg
-                  width="16"
-                  height="16"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </button>
               <button class="nav-button" @click="showModal = true">
                 <svg
                   width="16"
@@ -162,6 +146,77 @@
 
       </div>
     </header>
+        <!-- 弹框 -->
+    <div class="modal-overlay-home" v-if="showModal" @click="showModal = false">
+      <div class="modal-home" @click.stop>
+        <div class="modal-theme-mb">
+          <span>外观切换</span>
+          <!-- 移动端主题切换 -->
+          <button @click="toggleDark" class="tool-switch" title="Toggle theme">
+            <svg
+              v-if="!isDark"
+              class="normal-svg"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              v-else
+              class="dark-svg"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-header">
+          <a
+            href="https://opentiny.design"
+            title="OpenTiny"
+            class="home-link home-link-mb"
+          >
+            <img
+              :src="'images/logo.svg'"
+              alt="OpenTiny NEXT"
+              class="logo-icon"
+            />
+            <span>OpenTiny</span>
+            <svg
+              width="3"
+              height="24"
+              viewBox="0 -9 3 24"
+              class="h-5 rotate-0 overflow-visible text-white/90"
+            >
+              <path
+                d="M0 0L3 3L0 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -174,8 +229,6 @@ const { site, theme } = useData();
 
 const route = useRoute();
 const router = useRouter();
-
-const showModal = ref(false);
 
 // 获取主题配置
 const themeConfig = computed(() => theme.value);
@@ -219,6 +272,7 @@ const toggleDark = () => {
   }
 };
 
+const showModal = ref(false);
 
 
 const prefix = site.value.base || '/';
@@ -317,6 +371,10 @@ watch(
   background-color: var(--home-link-bg-color);
 }
 
+.home-link svg{
+  width: 8px;
+} 
+
 .home-link-mb {
   width: 182px;
   line-height: 38px;
@@ -376,7 +434,45 @@ watch(
   border-radius: 50%;
 }
 
+.modal-overlay-home {
+  position: fixed;
+  overflow-y: auto;
+  z-index: 99;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+.dark .modal-overlay-home {
+  background: rgba(0, 0, 0, 0.8);
+}
+.modal-overlay-home .modal-home {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: 250px;
 
+  border-radius: 12px;
+  padding: 20px;
+  background: #ffffff;
+  overflow: hidden;
+  z-index: 1000;
+  animation: modal-appear 0.3s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.dark .modal-home {
+  background: rgba(0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 /* 响应式设计 */
 @media (min-width: 980px) {
   .header-top {
