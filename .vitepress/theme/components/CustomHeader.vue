@@ -349,6 +349,9 @@ watch(
   background-color: #e6e6e6;
   color: var(--vp-c-text-1);
 }
+.dark .tool-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
 .tool-switch {
   position: relative;
   border-radius: 11px;

@@ -277,6 +277,9 @@ watch(
   height: 2px;
   background-color: #dbdbdb;
 }
+.dark .home-logo-mb ::before {
+  background: rgba(255, 255, 255, 0.1);
+}
 .home-logo-icon {
   height: 32px;
   width: 32px;
@@ -515,6 +518,9 @@ watch(
   background-color: #fafafa;
   border-radius: 8px;
 }
+.dark .modal-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
 .modal-tab-title {
   font-size: 16px;
@@ -546,6 +552,15 @@ watch(
   margin-top: 10px;
   font-weight: 500;
   color: #495057;
+}
+.dark .sidebar{
+  background: #1a1a1a;
+}
+.dark .home-logo::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+.dark .icon-wrapper:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 680px) {

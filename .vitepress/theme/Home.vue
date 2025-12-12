@@ -112,6 +112,9 @@ const homeList = [
   flex: 0 0 calc((100% - 3 * 30px) / 4);
   max-width: calc((100% - 3 * 30px) / 4);
 }
+.dark .small-box {
+  background: #262626;
+}
 .row1 {
   display: flex;
   align-items: flex-start;
@@ -170,6 +173,27 @@ const homeList = [
   color: #ccc;
   pointer-events: none;
   cursor: not-allowed;
+}
+.dark .link {
+  color: #5291FF;
+}
+.dark .link.disabled {
+  color: #808080;
+}
+.dark .row3{
+  color: #b3b3b3;
+}
+.dark .row1-title{
+  color: #e6e6e6;
+}
+.dark .row1-content{
+  color: #b3b3b3;
+}
+.dark .home-title{
+  color: #e6e6e6;
+}
+.dark .home-desc{
+  color: #b3b3b3;
 }
 
 /* 响应式断点：3列 / 2列 / 1列，同时在 <980px 时调整标题与描述 */
