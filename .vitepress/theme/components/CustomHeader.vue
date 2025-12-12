@@ -8,11 +8,11 @@
           <div class="logo-section">
             <a href="/" class="logo-link">
               <img
-                :src="
+                :src="getImgUrl(
                   isDark
                     ? 'images/logo2.svg'
                     : 'images/logo2.svg'
-                "
+                )"
                 alt="OpenTiny NEXT"
                 class="logo-icon"
               />
@@ -111,11 +111,11 @@
             <div class="mb-logo">
               <a href="/" class="logo-link">
                 <img
-                  :src="
+                 :src="getImgUrl(
                     isDark
                       ? 'images/logo2.svg'
                       : 'images/logo2.svg'
-                  "
+                  )"
                   alt="OpenTiny NEXT"
                   class="logo-icon"
                 />
@@ -194,7 +194,7 @@
             class="home-link home-link-mb"
           >
             <img
-              :src="'images/logo.svg'"
+              :src="getImgUrl('images/logo.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -233,6 +233,9 @@ const router = useRouter();
 // 获取主题配置
 const themeConfig = computed(() => theme.value);
 
+const getImgUrl = (imgPath) => {
+  return site.value.base + imgPath;
+};
 
 
 // 是否显示导航栏: 如果当前路径是首页，则不显示导航栏
