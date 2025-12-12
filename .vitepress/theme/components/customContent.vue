@@ -4,7 +4,7 @@
       <div class="home-logo">
         <a :href="backHome" rel="noopener noreferrer">
           <img
-            :src="isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg'"
+            :src="getImgUrl(isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg') "
             class="home-logo-icon"
           />
         </a>
@@ -20,7 +20,7 @@
       >
         <a :href="iconList.link" rel="noopener noreferrer">
           <img
-            :src="iconList.isActive ? iconList.srcActive : iconList.src"
+            :src="getImgUrl(iconList.isActive ? iconList.srcActive : iconList.src)"
             class="icon"
           />
         </a>
@@ -32,7 +32,7 @@
     </div>
     <div class="sidebar-mb" @click="showModal = true">
       <img
-        :src="isDark ? 'images/menu.svg' : 'images/menu.svg'"
+        :src="getImgUrl(isDark ? 'images/menu.svg' : 'images/menu.svg')"
         class="menu-mb"
       />
     </div>
@@ -61,7 +61,7 @@
         <div class="home-logo-mb">
           <a href="/" class="logo-link">
             <img
-              :src="isDark ? 'images/logo2.svg' : 'images/logo2.svg'"
+              :src="getImgUrl(isDark ? 'images/logo2.svg' : 'images/logo2.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -77,7 +77,7 @@
             <a :href="tab.link" rel="noopener noreferrer">
               <img
                 class="avatar"
-                :src="tab.isActive ? tab.srcActive : tab.src"
+                :src="getImgUrl(tab.isActive ? tab.srcActive : tab.src)"
               />
               <div class="modal-tab-right">
                 <div class="modal-tab-title">{{ tab.title }}</div>
@@ -131,7 +131,7 @@
             class="home-link home-link-mb"
           >
             <img
-              :src="'images/logo.svg'"
+              :src="getImgUrl('images/logo.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -167,6 +167,10 @@ const showModal = ref(false);
 
 const backHome = ref('/');
 backHome.value = site.value.base;
+
+const getImgUrl = (imgPath) => {
+  return site.value.base + imgPath;
+};
 
 const iconLists = reactive([
   {
