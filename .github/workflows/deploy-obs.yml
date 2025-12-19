@@ -52,7 +52,7 @@ jobs:
       - name: Build site
         run: pnpm build
         env:
-          VITEPRESS_BASE: //res-static.opentiny.design/opentiny-playground/${{ steps.ver.outputs.value }}/
+          VITEPRESS_BASE: /
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
