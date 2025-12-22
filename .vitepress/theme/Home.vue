@@ -20,11 +20,15 @@
           </div>
           <!-- 第二行：大图片 -->
           <div class="row2">
-            <img
-              class="main-img"
-              :src="getImgUrl(item.imgUrl)"
-              alt="主图"
-            />
+              <img
+                :src="getImgUrl(
+                  isDark
+                    ? `images/${item.imgUrl}-dark.svg`
+                    : `images/${item.imgUrl}.svg`
+                )"
+                alt="OpenTiny NEXT"
+                class="logo-icon"
+              />
           </div>
           <!-- 第三行：描述文本 -->
           <div class="row3">{{ item.desc }} </div>
@@ -43,8 +47,17 @@
 </template>
 <script setup>
 import { useData } from "vitepress";
+import { ref, onMounted } from 'vue';
 
 const { site } = useData();
+
+// 暗色模式状态
+const isDark = ref(false);
+
+// 初始化暗色模式状态
+onMounted(() => {
+  isDark.value = document.documentElement.classList.contains('dark');
+});
 
 const getImgUrl = (imgPath) => {
   return site.value.base + imgPath;
@@ -55,7 +68,7 @@ const homeList = [
         icon: 'images/tiny-vue-logo-active.svg',
         title: 'TinyVue',
         titleTip: 'vue组件库',
-        imgUrl: 'images/banner1.svg',
+        imgUrl: 'tiny-vue-banner',
         link: 'vue-playground',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
@@ -63,7 +76,7 @@ const homeList = [
         icon: 'images/tiny-engine-logo-active.svg',
         title: 'TinyEngine',
         titleTip: '低代码引擎',
-        imgUrl: 'images/banner2.svg',
+        imgUrl: 'tiny-engine-banner',
         link: 'tiny-engine#/tiny-engine-editor',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
@@ -71,7 +84,7 @@ const homeList = [
         icon: 'images/next-sdk-logo-active.svg',
         title: 'NEXT-SDKs',
         titleTip: '智能应用开发工具包', 
-        imgUrl: 'images/banner3.svg',
+        imgUrl: 'next-sdk-banner',
         link: '',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
@@ -79,7 +92,7 @@ const homeList = [
         icon: 'images/tiny-robot-logo-active.svg',
         title: 'TinyRobot',
         titleTip: 'AI智能助手', 
-        imgUrl: 'images/banner4.svg',
+        imgUrl: 'tiny-robot-banner',
         link: '',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
@@ -120,7 +133,7 @@ const homeList = [
   max-width: calc((100% - 3 * 30px) / 4);
 }
 .dark .small-box {
-  background: #262626;
+  background: rgba(38,38,38,1);
 }
 .row1 {
   display: flex;
@@ -263,5 +276,8 @@ const homeList = [
   .vp-doc.avatar{
     padding: 20px;
   }
+}
+.logo-icon{
+  background: rgba(38,38,38,1);
 }
 </style>

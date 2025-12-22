@@ -10,8 +10,8 @@
               <img
                 :src="getImgUrl(
                   isDark
-                    ? 'images/logo2.svg'
-                    : 'images/logo2.svg'
+                    ? 'images/logo-dark.svg'
+                    : 'images/logo.svg'
                 )"
                 alt="OpenTiny NEXT"
                 class="logo-icon"
@@ -113,8 +113,8 @@
                 <img
                  :src="getImgUrl(
                     isDark
-                      ? 'images/logo2.svg'
-                      : 'images/logo2.svg'
+                      ? 'images/logo-dark.svg'
+                      : 'images/logo.svg'
                   )"
                   alt="OpenTiny NEXT"
                   class="logo-icon"
@@ -194,7 +194,7 @@
             class="home-link home-link-mb"
           >
             <img
-              :src="getImgUrl('images/logo.svg')"
+              :src="getImgUrl('images/logo1.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -341,6 +341,9 @@ watch(
 
 .logo-icon {
   height: 32px;
+}
+.modal-header .logo-icon {
+  height: 16px;
 }
 
 .logo-text {
