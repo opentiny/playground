@@ -11,7 +11,7 @@
           <div class="row1">
             <img
               class="avatar"
-              :src="item.icon"
+              :src="getImgUrl(item.icon)"
             />
             <div class="row1-right">
               <div class="row1-title">{{ item.title }}</div>
@@ -22,7 +22,7 @@
           <div class="row2">
             <img
               class="main-img"
-              :src="item.imgUrl"
+              :src="getImgUrl(item.imgUrl)"
               alt="主图"
             />
           </div>
@@ -42,6 +42,13 @@
   </div>
 </template>
 <script setup>
+import { useData } from "vitepress";
+
+const { site } = useData();
+
+const getImgUrl = (imgPath) => {
+  return site.value.base + imgPath;
+};
 
 const homeList = [
       {

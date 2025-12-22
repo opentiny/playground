@@ -2,9 +2,9 @@
   <div class="custom-content">
     <div class="sidebar">
       <div class="home-logo">
-        <a href="/" rel="noopener noreferrer">
+        <a :href="backHome" rel="noopener noreferrer">
           <img
-            :src="isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg'"
+            :src="getImgUrl(isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg') "
             class="home-logo-icon"
           />
         </a>
@@ -20,7 +20,7 @@
       >
         <a :href="iconList.link" rel="noopener noreferrer">
           <img
-            :src="iconList.isActive ? iconList.srcActive : iconList.src"
+            :src="getImgUrl(iconList.isActive ? iconList.srcActive : iconList.src)"
             class="icon"
           />
         </a>
@@ -32,7 +32,7 @@
     </div>
     <div class="sidebar-mb" @click="showModal = true">
       <img
-        :src="isDark ? 'images/menu.svg' : 'images/menu.svg'"
+        :src="getImgUrl(isDark ? 'images/menu.svg' : 'images/menu.svg')"
         class="menu-mb"
       />
     </div>
@@ -61,7 +61,7 @@
         <div class="home-logo-mb">
           <a href="/" class="logo-link">
             <img
-              :src="isDark ? 'images/logo2.svg' : 'images/logo2.svg'"
+              :src="getImgUrl(isDark ? 'images/logo2.svg' : 'images/logo2.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -77,7 +77,7 @@
             <a :href="tab.link" rel="noopener noreferrer">
               <img
                 class="avatar"
-                :src="tab.isActive ? tab.srcActive : tab.src"
+                :src="getImgUrl(tab.isActive ? tab.srcActive : tab.src)"
               />
               <div class="modal-tab-right">
                 <div class="modal-tab-title">{{ tab.title }}</div>
@@ -131,7 +131,7 @@
             class="home-link home-link-mb"
           >
             <img
-              :src="'images/logo.svg'"
+              :src="getImgUrl('images/logo.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -158,10 +158,19 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
-import { useRoute } from "vitepress";
+import { useRoute ,useData } from "vitepress";
+// 获取 VitePress 数据
+const { site } = useData();
 const route = useRoute();
 
 const showModal = ref(false);
+
+const backHome = ref('/');
+backHome.value = site.value.base;
+
+const getImgUrl = (imgPath) => {
+  return site.value.base + imgPath;
+};
 
 const iconLists = reactive([
   {
@@ -199,7 +208,7 @@ const iconLists = reactive([
 ]);
 
 const tipIdx = ref(null);
-const linkUrl = ref("https://opentiny.design/vue-playground");
+const linkUrl = ref("https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os");
 function showTip(idx) {
   tipIdx.value = idx;
 }
@@ -209,6 +218,11 @@ const hideTip = () => {
 const changeIcon = (idx) => {
   iconLists.forEach((icon, index) => {
     icon.isActive = index === idx;
+  });
+};
+const changeIconActive = (key) => {
+  iconLists.forEach((icon, index) => {
+    icon.isActive = iconLists[index].title === key;
   });
 };
 
@@ -228,13 +242,17 @@ const getModalTabClasses = (tab: TabItem) => ({
 watch(
   () => route.path,
   () => {
+    let title = "TinyVue";
     if (route.path.includes("/vue-playground")) {
-      linkUrl.value = "https://opentiny.design/vue-playground";
+      linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
+      title = "TinyVue";
     } else if (route.path.includes("/tiny-engine")) {
       linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
+      title = "TinyEngine";
     } else {
-      linkUrl.value = "https://opentiny.design/vue-playground";
+      linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
     }
+    changeIconActive(title);
   },
   { deep: true, immediate: true }
 );
