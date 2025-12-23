@@ -13,6 +13,7 @@
                     ? 'images/logo-dark.svg'
                     : 'images/logo.svg'
                 )"
+                :key="isDark"
                 alt="OpenTiny NEXT"
                 class="logo-icon"
               />
@@ -116,6 +117,7 @@
                       ? 'images/logo-dark.svg'
                       : 'images/logo.svg'
                   )"
+                  :key="isDark"
                   alt="OpenTiny NEXT"
                   class="logo-icon"
                 />
@@ -225,7 +227,7 @@ import { computed, ref, onMounted, watch } from 'vue';
 import { useData, useRoute, useRouter } from 'vitepress';
 
 // 获取 VitePress 数据
-const { site, theme } = useData();
+const { site, theme, isDark } = useData();
 
 const route = useRoute();
 const router = useRouter();
@@ -237,42 +239,10 @@ const getImgUrl = (imgPath) => {
   return site.value.base + imgPath;
 };
 
-
-// 是否显示导航栏: 如果当前路径是首页，则不显示导航栏
-const getConfigKey = (link: any) => {
-  return link.replace(/\/$/, '').split('/')[2];
-};
-// 是否显示导航栏: 如果当前路径是首页，则不显示导航栏
-const showNavigation = computed(() => {
-//   return !isHomePage(route.path, site.value.base);
-});
-
-// 当前激活的导航标签
-const activeNavTab = ref('');
-
-
-// 暗色模式状态
-const isDark = ref(false);
-
-// 初始化暗色模式状态
-onMounted(() => {
-  isDark.value = document.documentElement.classList.contains('dark');
-});
-
 // 切换暗色模式
 const toggleDark = () => {
-  const html = document.documentElement;
-  const isDarkMode = html.classList.contains('dark');
-
-  if (isDarkMode) {
-    html.classList.remove('dark');
-    localStorage.setItem('vitepress-theme-appearance', 'light');
-    isDark.value = false;
-  } else {
-    html.classList.add('dark');
-    localStorage.setItem('vitepress-theme-appearance', 'dark');
-    isDark.value = true;
-  }
+  isDark.value = !isDark.value
+  localStorage.setItem('vitepress-theme-appearance', isDark.value ? 'dark' : 'light')
 };
 
 const showModal = ref(false);

@@ -5,6 +5,7 @@
         <a :href="backHome" rel="noopener noreferrer">
           <img
             :src="getImgUrl(isDark ? 'images/mini-logo-dark.svg' : 'images/mini-logo.svg') "
+            :key="isDark"
             class="home-logo-icon"
           />
         </a>
@@ -62,6 +63,7 @@
           <a href="/" class="logo-link">
             <img
               :src="getImgUrl(isDark ? 'images/logo-dark.svg' : 'images/logo.svg')"
+              :key="isDark"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -160,15 +162,8 @@
 import { reactive, ref, watch ,onMounted } from "vue";
 import { useRoute ,useData } from "vitepress";
 // 获取 VitePress 数据
-const { site } = useData();
+const { site, isDark } = useData();
 const route = useRoute();
-// 暗色模式状态
-const isDark = ref(false);
-
-// 初始化暗色模式状态
-onMounted(() => {
-  isDark.value = document.documentElement.classList.contains('dark');
-});
 const showModal = ref(false);
 
 const backHome = ref('/');
@@ -185,7 +180,7 @@ const iconLists = reactive([
     isActive: true,
     title: "TinyVue",
     titleTip: "vue组件库",
-    link: "vue-playground",
+    link: "tiny-vue",
   },
   {
     src: "images/tiny-engine-logo.svg",
@@ -193,7 +188,7 @@ const iconLists = reactive([
     isActive: false,
     title: "TinyEngine",
     titleTip: "低代码引擎",
-    link: "tiny-engine#/tiny-engine-editor",
+    link: "tiny-engine",
   },
   {
     src: "images/next-sdk-logo.svg",
@@ -208,7 +203,7 @@ const iconLists = reactive([
     srcActive: "images/tiny-robot-logo-active.svg",
     isActive: false,
     title: "TinyRobot",
-    link: "",
+    link: "tiny-robot",
     titleTip: "AI智能助手",
   },
 ]);
@@ -249,13 +244,16 @@ watch(
   () => route.path,
   () => {
     let title = "TinyVue";
-    if (route.path.includes("/vue-playground")) {
+    if (route.path.includes("/tiny-vue")) {
       linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
       title = "TinyVue";
     } else if (route.path.includes("/tiny-engine")) {
       linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
       title = "TinyEngine";
-    } else {
+    }else if (route.path.includes("/tiny-robot")) {
+      linkUrl.value = "https://opentiny.github.io/tiny-robot/latest/playground/";
+      title = "TinyRobot";
+    }  else {
       linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
     }
     changeIconActive(title);
