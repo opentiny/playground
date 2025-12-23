@@ -4,7 +4,7 @@
       <div class="home-logo">
         <a :href="backHome" rel="noopener noreferrer">
           <img
-            :src="getImgUrl(isDark ? 'images/mini-logo.svg' : 'images/mini-logo.svg') "
+            :src="getImgUrl(isDark ? 'images/mini-logo-dark.svg' : 'images/mini-logo.svg') "
             class="home-logo-icon"
           />
         </a>
@@ -61,7 +61,7 @@
         <div class="home-logo-mb">
           <a href="/" class="logo-link">
             <img
-              :src="getImgUrl(isDark ? 'images/logo2.svg' : 'images/logo2.svg')"
+              :src="getImgUrl(isDark ? 'images/logo-dark.svg' : 'images/logo.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -131,7 +131,7 @@
             class="home-link home-link-mb"
           >
             <img
-              :src="getImgUrl('images/logo.svg')"
+              :src="getImgUrl('images/logo1.svg')"
               alt="OpenTiny NEXT"
               class="logo-icon"
             />
@@ -157,12 +157,18 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref, watch } from "vue";
+import { reactive, ref, watch ,onMounted } from "vue";
 import { useRoute ,useData } from "vitepress";
 // 获取 VitePress 数据
 const { site } = useData();
 const route = useRoute();
+// 暗色模式状态
+const isDark = ref(false);
 
+// 初始化暗色模式状态
+onMounted(() => {
+  isDark.value = document.documentElement.classList.contains('dark');
+});
 const showModal = ref(false);
 
 const backHome = ref('/');
@@ -298,10 +304,11 @@ watch(
   height: 2px;
   background-color: #dbdbdb;
 }
-.home-logo-icon {
-  height: 32px;
-  width: 32px;
-  margin: 14px 12px;
+.dark .home-logo-mb ::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+.dark .home-logo-icon {
+  background: #1a1a1a;
 }
 .sidebar {
   width: 56px;
@@ -536,6 +543,9 @@ watch(
   background-color: #fafafa;
   border-radius: 8px;
 }
+.dark .modal-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
 .modal-tab-title {
   font-size: 16px;
@@ -567,6 +577,15 @@ watch(
   margin-top: 10px;
   font-weight: 500;
   color: #495057;
+}
+.dark .sidebar{
+  background: #1a1a1a;
+}
+.dark .home-logo::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+.dark .icon-wrapper:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 680px) {
