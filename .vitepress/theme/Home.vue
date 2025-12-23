@@ -64,7 +64,7 @@ const homeList = [
         title: 'TinyEngine',
         titleTip: '低代码引擎',
         imgUrl: 'images/banner2.svg',
-        link: 'tiny-engine#/tiny-engine-editor',
+        link: 'tiny-engine',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
       {
@@ -80,7 +80,7 @@ const homeList = [
         title: 'TinyRobot',
         titleTip: 'AI智能助手', 
         imgUrl: 'images/banner4.svg',
-        link: '',
+        link: 'tiny-robot',
         desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
       },
     ]

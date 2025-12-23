@@ -187,7 +187,7 @@ const iconLists = reactive([
     isActive: false,
     title: "TinyEngine",
     titleTip: "低代码引擎",
-    link: "tiny-engine#/tiny-engine-editor",
+    link: "tiny-engine",
   },
   {
     src: "images/next-sdk-logo.svg",
@@ -202,7 +202,7 @@ const iconLists = reactive([
     srcActive: "images/tiny-robot-logo-active.svg",
     isActive: false,
     title: "TinyRobot",
-    link: "",
+    link: "tiny-robot",
     titleTip: "AI智能助手",
   },
 ]);
@@ -249,7 +249,10 @@ watch(
     } else if (route.path.includes("/tiny-engine")) {
       linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
       title = "TinyEngine";
-    } else {
+    }else if (route.path.includes("/tiny-robot")) {
+      linkUrl.value = "https://opentiny.github.io/tiny-robot/latest/playground/";
+      title = "TinyRobot";
+    }  else {
       linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
     }
     changeIconActive(title);
