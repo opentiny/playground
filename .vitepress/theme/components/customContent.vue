@@ -191,20 +191,20 @@ const iconLists = reactive([
     link: "tiny-engine",
   },
   {
-    src: "images/next-sdk-logo.svg",
-    srcActive: "images/next-sdk-logo-active.svg",
-    isActive: false,
-    title: "NEXT-SDKs",
-    link: "",
-    titleTip: "智能应用工具包",
-  },
-  {
     src: "images/tiny-robot-logo.svg",
     srcActive: "images/tiny-robot-logo-active.svg",
     isActive: false,
     title: "TinyRobot",
     link: "tiny-robot",
     titleTip: "AI智能助手",
+  },
+  {
+    src: "images/next-sdk-logo.svg",
+    srcActive: "images/next-sdk-logo-active.svg",
+    isActive: false,
+    title: "NEXT-SDKs",
+    link: "",
+    titleTip: "智能应用工具包",
   },
 ]);
 
