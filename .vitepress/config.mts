@@ -6,6 +6,7 @@ export default defineConfig({
   description: "OpenTiny 项目演练场",
   base: process.env.VITEPRESS_BASE || '/',
   outDir: 'dist',
+  head: [['link', { rel: 'icon', href: '/images/favicon.ico' }]],
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
