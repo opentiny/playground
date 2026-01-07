@@ -9,10 +9,7 @@
         <div class="small-box" v-for="(item, idx) in homeList" :key="idx">
           <!-- 第一行：左图右上下结构 -->
           <div class="row1">
-            <img
-              class="avatar"
-              :src="getImgUrl(item.icon)"
-            />
+            <img class="avatar" :src="getImgUrl(item.icon)" />
             <div class="row1-right">
               <div class="row1-title">{{ item.title }}</div>
               <div class="row1-content">{{ item.titleTip }}</div>
@@ -20,19 +17,21 @@
           </div>
           <!-- 第二行：大图片 -->
           <div class="row2">
-              <img
-                :src="getImgUrl(
+            <img
+              :src="
+                getImgUrl(
                   isDark
                     ? `images/${item.imgUrl}-dark.svg`
                     : `images/${item.imgUrl}.svg`
-                )"
-                :key="isDark"
-                alt="OpenTiny NEXT"
-                class="logo-icon"
-              />
+                )
+              "
+              :key="isDark"
+              alt="OpenTiny NEXT"
+              class="logo-icon"
+            />
           </div>
           <!-- 第三行：描述文本 -->
-          <div class="row3">{{ item.desc }} </div>
+          <div class="row3">{{ item.desc }}</div>
           <!-- 第四行：跳转链接 -->
           <div class="row4">
             <a
@@ -41,6 +40,7 @@
               >进入 Playground</a
             >
           </div>
+          <div v-if="item.link === ''" class="row5">敬请期待</div>
         </div>
       </div>
     </div>
@@ -56,39 +56,39 @@ const getImgUrl = (imgPath) => {
 };
 
 const homeList = [
-      {
-        icon: 'images/tiny-vue-logo-active.svg',
-        title: 'TinyVue',
-        titleTip: 'vue组件库',
-        imgUrl: 'tiny-vue-banner',
-        link: 'tiny-vue',
-        desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
-      },
-      {
-        icon: 'images/tiny-engine-logo-active.svg',
-        title: 'TinyEngine',
-        titleTip: '低代码引擎',
-        imgUrl: 'tiny-engine-banner',
-        link: 'tiny-engine',
-        desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
-      },
-      {
-        icon: 'images/next-sdk-logo-active.svg',
-        title: 'NEXT-SDKs',
-        titleTip: '智能应用开发工具包', 
-        imgUrl: 'next-sdk-banner',
-        link: '',
-        desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
-      },
-      {
-        icon: 'images/tiny-robot-logo-active.svg',
-        title: 'TinyRobot',
-        titleTip: 'AI智能助手', 
-        imgUrl: 'tiny-robot-banner',
-        link: 'tiny-robot',
-        desc: 'OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。'
-      },
-    ]
+  {
+    icon: "images/tiny-vue-logo-active.svg",
+    title: "TinyVue",
+    titleTip: "vue组件库",
+    imgUrl: "tiny-vue-banner",
+    link: "tiny-vue",
+    desc: "基于 OpenTiny Design 设计体系的 Vue UI 组件库，一套跨端、跨框架的企业级 UI 组件库，支持 Vue 2 和 Vue 3，支持 PC 端和移动端。",
+  },
+  {
+    icon: "images/tiny-engine-logo-active.svg",
+    title: "TinyEngine",
+    titleTip: "低代码引擎",
+    imgUrl: "tiny-engine-banner",
+    link: "tiny-engine",
+    desc: "低代码引擎它内置了一个功能强大的低代码设计器，用户可以基于低代码引擎定制（开发）出各种低代码平台，如：流程编排平台、页面编排平台、图元编排平台、移动端页面开发平台、大屏开发平台等。",
+  },
+  {
+    icon: "images/tiny-robot-logo-active.svg",
+    title: "TinyRobot",
+    titleTip: "AI智能助手",
+    imgUrl: "tiny-robot-banner",
+    link: "tiny-robot",
+    desc: "TinyRobot是符合OpenTiny Design 设计体系的 AI 组件库，提供了丰富的AI交互组件，助力开发者快速构建AI应用。",
+  },
+  {
+    icon: "images/next-sdk-logo-active.svg",
+    title: "NEXT-SDKs",
+    titleTip: "智能应用开发工具包",
+    imgUrl: "next-sdk-banner",
+    link: "",
+    desc: "OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。",
+  },
+];
 </script>
 <style scoped>
 .home-title {
@@ -97,7 +97,7 @@ const homeList = [
   font-weight: bold;
   text-align: center;
   color: #000000;
-  margin-top: 60px;
+  padding-top: 60px;
 }
 .home-desc {
   font-size: 16px;
@@ -123,9 +123,10 @@ const homeList = [
   gap: 16px;
   flex: 0 0 calc((100% - 3 * 30px) / 4);
   max-width: calc((100% - 3 * 30px) / 4);
+  position: relative;
 }
 .dark .small-box {
-  background: rgba(38,38,38,1);
+  background: rgba(38, 38, 38, 1);
 }
 .row1 {
   display: flex;
@@ -168,6 +169,7 @@ const homeList = [
   font-size: 14px;
   line-height: 21px;
   color: #808080;
+  min-height: 105px;
 }
 .row4 {
   display: flex;
@@ -187,24 +189,24 @@ const homeList = [
   cursor: not-allowed;
 }
 .dark .link {
-  color: #5291FF;
+  color: #5291ff;
 }
 .dark .link.disabled {
   color: #808080;
 }
-.dark .row3{
+.dark .row3 {
   color: #b3b3b3;
 }
-.dark .row1-title{
+.dark .row1-title {
   color: #e6e6e6;
 }
-.dark .row1-content{
+.dark .row1-content {
   color: #b3b3b3;
 }
-.dark .home-title{
+.dark .home-title {
   color: #e6e6e6;
 }
-.dark .home-desc{
+.dark .home-desc {
   color: #b3b3b3;
 }
 
@@ -221,7 +223,7 @@ const homeList = [
 
 @media (max-width: 1200px) {
   .small-box {
-    flex: 0 0 calc((100% -  30px) / 2);
+    flex: 0 0 calc((100% - 30px) / 2);
     max-width: calc((100% - 30px) / 2);
   }
 }
@@ -265,14 +267,31 @@ const homeList = [
     height: auto;
     aspect-ratio: 318 / 180;
   }
-  .vp-doc.avatar{
+  .vp-doc.avatar {
     padding: 20px;
   }
 }
-.logo-icon{
-  background: rgba(255,255,255,1) !important;
+.row5 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 24px;
+  padding: 0 12px;
+  border-radius: 0 8px 0 8px;
+  background: #fce3e3;
+  color: #f23030;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
 }
-.dark .logo-icon{
-  background: rgba(38,38,38,1) !important;
+.dark .row5 {
+  background: rgba(217, 72, 56, 0.2);
+  color: #d94838;
+}
+.logo-icon {
+  background: rgba(255, 255, 255, 1) !important;
+}
+.dark .logo-icon {
+  background: rgba(38, 38, 38, 1) !important;
 }
 </style>
