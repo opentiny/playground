@@ -85,7 +85,7 @@ const homeList = [
     title: "NEXT-SDKs",
     titleTip: "智能应用开发工具包",
     imgUrl: "next-sdk-banner",
-    link: "",
+    link: "next-sdk",
     desc: "OpenTiny NEXT-SDKs 是一套前端智能应用开发工具包，旨在简化 WebAgent 的集成与使用，支持多种编程语言和前端框架，帮助开发者快速实现智能化功能。",
   },
 ];
