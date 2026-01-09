@@ -203,7 +203,7 @@ const iconLists = reactive([
     srcActive: "images/next-sdk-logo-active.svg",
     isActive: false,
     title: "NEXT-SDKs",
-    link: "",
+    link: "next-sdk",
     titleTip: "智能应用工具包",
   },
 ]);
@@ -253,7 +253,10 @@ watch(
     }else if (route.path.includes("/tiny-robot")) {
       linkUrl.value = "https://opentiny.github.io/tiny-robot/latest/playground/";
       title = "TinyRobot";
-    }  else {
+    } else if (route.path.includes("/next-sdk")) {
+      linkUrl.value = "https://ai.opentiny.design/next-sdk-playground";
+      title = "NEXT-SDKs";
+    } else {
       linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
     }
     changeIconActive(title);
