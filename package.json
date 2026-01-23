@@ -3,8 +3,11 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
+    "sync-genui-env": "cp .genui.env genui-sdk/sites/playground/web/env/.env",
+    "predev": "pnpm run sync-genui-env",
+    "prebuild": "pnpm run sync-genui-env",
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "pnpm -C genui-sdk run build:playground && vitepress build",
     "preview": "vitepress preview"
   },
   "devDependencies": {
@@ -17,6 +20,7 @@
     "vitepress-demo-plugin": "^1.4.2"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "@opentiny/vue-theme": "3.28.0"
   }
 }

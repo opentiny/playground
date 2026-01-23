@@ -1,3 +1,4 @@
 packages:
-  - packages/*
-  - docs
+  - genui-sdk/packages/**/*
+  - genui-sdk/sites/**/*
+  - genui-sdk/projects/**/*
