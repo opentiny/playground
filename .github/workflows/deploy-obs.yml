@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
-        ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY }}
+          ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY }}
       - name: Checkout repository (with submodules)
         uses: actions/checkout@v4
         with:
