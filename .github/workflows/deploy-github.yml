@@ -36,6 +36,8 @@ jobs:
         run: |
           git submodule sync --recursive
           git submodule update --init --recursive
+      - name: Setup alpha env to genui-sdk
+        run: cp .genui-alpha.env genui-sdk/sites/playground/web/env/.env
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
