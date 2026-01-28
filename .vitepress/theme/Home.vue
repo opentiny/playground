@@ -6,7 +6,7 @@
     </div>
     <div class="home-content">
       <div class="big-box">
-        <div class="small-box" v-for="(item, idx) in homeList" :key="idx">
+        <a :href="item.link" class="small-box" v-for="(item, idx) in homeList" :key="idx">
           <!-- 第一行：左图右上下结构 -->
           <div class="row1">
             <img class="avatar" :src="getImgUrl(item.icon)" />
@@ -41,7 +41,7 @@
             >
           </div>
           <div v-if="item.link === ''" class="row5">敬请期待</div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -124,6 +124,8 @@ const homeList = [
   flex: 0 0 calc((100% - 3 * 30px) / 4);
   max-width: calc((100% - 3 * 30px) / 4);
   position: relative;
+  text-decoration: none;
+  cursor: pointer;
 }
 .dark .small-box {
   background: rgba(38, 38, 38, 1);
@@ -149,6 +151,7 @@ const homeList = [
   font-weight: bold;
   margin-bottom: 4px;
   margin-top: -2px;
+  color: #191919;
 }
 .row1-content {
   line-height: 18px;

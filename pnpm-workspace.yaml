@@ -1,3 +1,7 @@
 packages:
-  - packages/*
-  - docs
+  - genui-sdk/packages/**/*
+  - genui-sdk/sites/**/*
+  - genui-sdk/projects/**/*
+  - '!genui-sdk/packages/frameworks/vue/output/**'
+  - '!genui-sdk/packages/frameworks/angular/**/*'
+  - '!genui-sdk/projects/tiny-schema-renderer-ng/**/*'
