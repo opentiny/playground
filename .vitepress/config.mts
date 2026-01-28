@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import type { UserConfig } from 'vitepress'
-import { resolveOpentinyThemeCSS, resolveStaticAssets } from './plugins'
+import { resolveStaticAssets } from './plugins'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -25,8 +25,6 @@ export default defineConfig({
     // 配置环境变量目录，指向子项目的 env 目录，确保能读取 .env 文件
     envDir: path.resolve(root, 'genui-sdk/sites/playground/web/env'),
     plugins: [
-      // 添加自定义插件处理 @opentiny/vue-theme 的 CSS 导入
-      resolveOpentinyThemeCSS(),
       // 添加插件来处理静态资源路径解析
       resolveStaticAssets(),
     ],
