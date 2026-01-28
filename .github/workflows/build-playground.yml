@@ -6,11 +6,6 @@ on:
     paths:
       - '.vitepress/**'
       - 'genui-sdk/**'
-  push:
-    branches: [ dev, main]
-    paths:
-      - '.vitepress/**'
-      - 'genui-sdk/**'
   workflow_dispatch: {}
 
 permissions:
