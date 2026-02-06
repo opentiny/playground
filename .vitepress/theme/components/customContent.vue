@@ -263,31 +263,37 @@ const getModalTabClasses = (tab: TabItem) => ({
   "modal-tab-active": tab.key === "activeProductTab.value",
 });
 
-watch(
-  () => route.path,
-  () => {
-    let title = "TinyVue";
-    if (route.path.includes("/tiny-vue")) {
-      linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
-      title = "TinyVue";
-    } else if (route.path.includes("/tiny-engine")) {
-      linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
-      title = "TinyEngine";
-    } else if (route.path.includes("/tiny-robot")) {
-      // Guard for SSR: window is undefined during VitePress build
-      const hash = typeof window !== "undefined" ? window.location.hash || "" : "";
-      linkUrl.value = `https://res-static.opentiny.design/tiny-robot-playground/latest/index.html${hash}`;
-      title = "TinyRobot";
-    } else if (route.path.includes("/next-sdk")) {
-      linkUrl.value = "https://ai.opentiny.design/next-sdk-playground";
-      title = "NEXT-SDKs";
-    } else {
-      linkUrl.value = "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
-    }
-    changeIconActive(title);
-  },
-  { deep: true, immediate: true }
-);
+// 由于 hash 只能在 client 端拿到，使用 onMounted 让 watch 不在 SSR 注册
+onMounted(() => {
+  watch(
+    () => route.path,
+    () => {
+      let title = "TinyVue";
+
+      if (route.path.includes("/tiny-vue")) {
+        linkUrl.value =
+          "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
+        title = "TinyVue";
+      } else if (route.path.includes("/tiny-engine")) {
+        linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
+        title = "TinyEngine";
+      } else if (route.path.includes("/tiny-robot")) {
+        const hash = window.location.hash || "";
+        linkUrl.value = `https://res-static.opentiny.design/tiny-robot-playground/latest/index.html${hash}`;
+        title = "TinyRobot";
+      } else if (route.path.includes("/next-sdk")) {
+        linkUrl.value = "https://ai.opentiny.design/next-sdk-playground";
+        title = "NEXT-SDKs";
+      } else {
+        linkUrl.value =
+          "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
+      }
+
+      changeIconActive(title);
+    },
+    { immediate: true },
+  );
+});
 
 // --- postMessage: iframe -> parent ---
 
