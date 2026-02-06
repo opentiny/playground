@@ -233,6 +233,7 @@ const iconLists = reactive([
 
 const tipIdx = ref(null);
 const linkUrl = ref("https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os");
+const tinyEngineDesignUrl = "https://res-static.opentiny.design/tiny-engine-designer/latest/index.html"
 function showTip(idx) {
   tipIdx.value = idx;
 }
@@ -263,6 +264,14 @@ const getModalTabClasses = (tab: TabItem) => ({
   "modal-tab-active": tab.key === "activeProductTab.value",
 });
 
+const openApp = () => {
+  const url = new URL(window.location.href)
+  const type = url.search.split('?')[1]
+  if (url.search.includes('id')) {
+    linkUrl.value = `${tinyEngineDesignUrl}?${type}`
+  }
+}
+
 // 由于 hash 只能在 client 端拿到，使用 onMounted 让 watch 不在 SSR 注册
 onMounted(() => {
   watch(
@@ -275,8 +284,9 @@ onMounted(() => {
           "https://opentiny.design/vue-playground?cmpId=button&fileName=click.vue&apiMode=Composition&mode=pc&theme=os";
         title = "TinyVue";
       } else if (route.path.includes("/tiny-engine")) {
-        linkUrl.value = "https://opentiny.design/tiny-engine#/tiny-engine-editor";
+        linkUrl.value = tinyEngineDesignUrl;
         title = "TinyEngine";
+        openApp()
       } else if (route.path.includes("/tiny-robot")) {
         const hash = window.location.hash || "";
         linkUrl.value = `https://res-static.opentiny.design/tiny-robot-playground/latest/index.html${hash}`;
@@ -310,12 +320,22 @@ function handleMessage(event: MessageEvent) {
   }
 }
 
+const openAppNewTab = ( event ) => {
+  if(event.data.type === 'openNewTab') {
+    const href = window.location.href.split('?')[0]
+    const searchParams = event.data.url.split('?')[1]
+    window.open(`${href}?${searchParams}`)
+  }
+}
+
 onMounted(() => {
   window.addEventListener("message", handleMessage);
+  window.addEventListener("message", openAppNewTab)
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("message", handleMessage);
+  window.removeEventListener('message', openAppNewTab)
 });
 </script>
 
