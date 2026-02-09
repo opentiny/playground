@@ -267,7 +267,7 @@ const getModalTabClasses = (tab: TabItem) => ({
 const openApp = () => {
   const url = new URL(window.location.href)
   const type = url.search
-  if (type.includes('id')) {
+  if (type) {
     linkUrl.value = `${tinyEngineDesignUrl}${type}`
   }
 }
@@ -324,7 +324,9 @@ const openAppNewTab = ( event ) => {
   if(event.data.type === 'openNewTab') {
     const href = window.location.href.split('?')[0]
     const searchParams = event.data.url.split('?')[1]
-    window.open(`${href}?${searchParams}`)
+    if (searchParams) {
+      window.open(`${href}?${searchParams}`)
+    }
   }
 }
 
