@@ -1,5 +1,6 @@
 // @ts-ignore 添加 furion 监控埋点
 export function insertFurion() {
+  if (typeof document === 'undefined') return
   !(function (x: string, n: string) {
     window[n] = window[n] || {}
     window[n].config = {
