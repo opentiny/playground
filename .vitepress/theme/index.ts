@@ -3,6 +3,7 @@ import Layout from './Layout.vue'
 import HomePage from './Home.vue'
 import CustomContent from './components/customContent.vue'
 import GenuiSdk from './components/GenuiSdk.vue'
+import { insertFurion } from './insert-furion'
 import './style.css'
 
 export default {
@@ -12,5 +13,6 @@ export default {
     app.component('HomePage', HomePage)
     app.component('CustomContent', CustomContent)
     app.component('GenuiSdk', GenuiSdk)
+    insertFurion()
   }
 }
