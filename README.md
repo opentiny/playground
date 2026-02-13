@@ -5,6 +5,7 @@ OpenTiny 项目演练场
 ## 本地启动
 
 ```shell
+git submodule update --init --recursive
 pnpm i
-pnpm dev
+pnpm dev  // 需要在 bash 环境下执行
 ```

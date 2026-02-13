@@ -7,10 +7,6 @@ body {
   background: #000000 url('/images/bg-playground-home-dark.png') repeat-y fixed center top / cover;
 }
 
-.opentiny-playground-layout .is-home {
-  height: calc(100vh - 64px) !important;
-}
-
 .VPNav .container {
   max-width: 100%;
 }
