@@ -292,7 +292,7 @@ onMounted(() => {
         linkUrl.value = `https://res-static.opentiny.design/tiny-robot-playground/latest/index.html${hash}`;
         title = "TinyRobot";
       } else if (route.path.includes("/next-sdk")) {
-        linkUrl.value = "https://ai.opentiny.design/next-sdk-playground";
+        linkUrl.value = "https://res-static.opentiny.design/next-sdk-playground/latest/index.html";
         title = "NEXT-SDKs";
       } else {
         linkUrl.value =
