@@ -1,3 +1,0 @@
-[submodule "genui-sdk"]
-	path = genui-sdk
-	url = git@github.com:opentiny/genui-sdk.git
