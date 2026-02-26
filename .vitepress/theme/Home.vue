@@ -370,7 +370,7 @@ const homeListButton = [
     margin: 40px 0px;
     gap: 16px;
     padding: 0;
-    background: transparent
+    background: transparent;
   }
   .main-img {
     width: 100%;
