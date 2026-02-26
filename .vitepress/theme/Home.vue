@@ -41,7 +41,6 @@
             <!-- 第四行：跳转链接 -->
             <div class="row4">
               <span
-                :href="item.link"
                 :class="['link', { disabled: item.link === '' }]"
                 >进入 Playground</span
               >
@@ -84,7 +83,6 @@
             <!-- 第四行：跳转链接 -->
             <div class="row4">
               <span
-                :href="item.link"
                 :class="['link', { disabled: item.link === '' }]"
                 >进入 Playground</span
               >
