@@ -51,7 +51,7 @@
           allowfullscreen
           title="Example Website"
           loading="lazy"
-          sandbox="allow-same-origin allow-scripts"
+          sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
           allow="clipboard-write"
           onload="this.previousElementSibling.previousElementSibling.checked = false"
         ></iframe>
